@@ -1,0 +1,15 @@
+.date {
+    &__year {
+        color: var(--secondary-text-color);
+        font-weight: 500;
+        font-size: clamp(1rem, 0.8733rem + 0.5333vw, 1.3rem);
+    }
+
+    &__title {
+        font-size: clamp(1.6rem, 1.4311rem + 0.7111vw, 2rem);
+    }
+
+    &__month {
+        text-transform: capitalize;
+    }
+}

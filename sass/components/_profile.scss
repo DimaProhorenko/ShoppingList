@@ -1,0 +1,13 @@
+@use '../abstracts/' as abs;
+
+.profile {
+    max-width: 3rem;
+
+    @include abs.for-tablet-up {
+        max-width: 4rem;
+    }
+
+    @include abs.for-desktop-up {
+        max-width: 5rem;
+    }
+}

@@ -1,0 +1,32 @@
+@use '../abstracts/' as abs;
+
+.container {
+    max-width: abs.$max-width;
+    padding-inline: 2rem;
+    margin-inline: auto;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.mb-1 {
+    margin-block-end: 1rem;
+}
+.mb-2 {
+    margin-block-end: 2rem;
+}
+.mb-3 {
+    margin-block-end: 3rem;
+}
+.mb-4 {
+    margin-block-end: 4rem;
+}

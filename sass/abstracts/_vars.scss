@@ -1,0 +1,16 @@
+$t-duration: 300ms;
+$t-timing: ease-in-out;
+
+$max-width: 900px;
+$primary-font: 'Poppins', sans-serif;
+
+$bp-phone: 480px;
+$bp-tablet: 620px;
+$bp-desktop: 1024px;
+
+:root {
+    --primary-text-color: #333;
+    --secondary-text-color: #777;
+
+    --task-border-color: #c2c2c2;
+}

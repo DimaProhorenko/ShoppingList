@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ToDO</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="./css/main.css" />
+		<script src="./js/app.js" defer></script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="d-flex jc-sb ai-center">
+					<div class="date">
+						<small class="date__year"></small>
+						<h4 class="date__title">
+							<span class="date__month"></span>
+							<span class="date__day"></span>th
+						</h4>
+					</div>
+					<div class="profile">
+						<img
+							src="./assets/img/profiles/man.png"
+							alt="Profile"
+							class="profile__img"
+						/>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="app">
+			<section class="tasks">
+				<div class="container">
+					<!-- Task counter start -->
+					<div class="counter mb-2">
+						<h3 class="counter__active">
+							Today's tasks (<span id="active-tasks-counter"
+								>0</span
+							>)
+						</h3>
+						<h3 class="counter__completed">
+							Completed (<span id="completed-tasks-counter"
+								>0</span
+							>)
+						</h3>
+					</div>
+					<!-- Task counter end -->
+					<!-- Tasks list start -->
+					<ul class="tasks__list">
+						<li class="task">
+							<span class="task__text">Take out trash</span>
+							<button class="task__delete" title="Delete task">
+								<i class="fa-solid fa-x"></i>
+							</button>
+						</li>
+					</ul>
+					<!-- Tasks list end -->
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

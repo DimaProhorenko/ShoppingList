@@ -1,0 +1,16 @@
+.counter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 600;
+    gap: 2rem;
+
+    &__active,
+    &__completed {
+        font-size: clamp(1.6rem, 1.4311rem + 0.7111vw, 2rem);
+    }
+
+    &__completed {
+        color: var(--secondary-text-color);
+    }
+}

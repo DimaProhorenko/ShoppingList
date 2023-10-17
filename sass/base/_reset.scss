@@ -1,0 +1,38 @@
+@use '../abstracts/' as abs;
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    color: var(--primary-text-color);
+    font-size: 1.6rem;
+    font-family: abs.$primary-font;
+    line-height: 1.5;
+}
+
+h1,
+h2,h3,h4,h5,h6 {
+    line-height: 1;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+section {
+    padding-block: 4rem;
+}
+
+ul {
+    list-style: none;
+}
