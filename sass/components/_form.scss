@@ -1,0 +1,31 @@
+@use '../abstracts/' as abs;
+
+.form {
+
+
+    &__label {
+        display: block;
+        margin-block-end: 1rem;
+    }
+
+    &__control {
+        padding: .75rem;
+        display: block;
+        width: 100%;
+        outline: none;
+        border: 1px solid var(--input-border-color);
+        border-radius: 0.5rem;
+        transition: border-color abs.$t-duration abs.$t-timing;
+
+        &:hover,
+        &:focus {
+            border-color: var(--primary-color);
+            cursor: pointer;
+        }
+    }
+
+    &__submit {
+        margin-block-start: 2rem;
+        margin-inline: auto;
+    }
+}

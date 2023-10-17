@@ -30,3 +30,11 @@
 .mb-4 {
     margin-block-end: 4rem;
 }
+
+.block-center {
+    margin-inline: auto;
+}
+
+.flow > * + * {
+    margin-block-start: 1rem;
+}

@@ -1,7 +1,11 @@
 :root {
+  --primary-color: #0BB6FF;
   --primary-text-color: #333;
   --secondary-text-color: #777;
+  --text-white: #fff;
+  --main-bg: #fff;
   --task-border-color: #c2c2c2;
+  --input-border-color: #b7b7b7;
 }
 
 *,
@@ -76,6 +80,14 @@ ul {
   margin-block-end: 4rem;
 }
 
+.block-center {
+  margin-inline: auto;
+}
+
+.flow > * + * {
+  margin-block-start: 1rem;
+}
+
 .header {
   padding-block: 1rem;
 }
@@ -136,4 +148,61 @@ ul {
   background-color: transparent;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  display: block;
+  padding-inline: 3rem;
+  padding-block: 0.75rem;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border-radius: 2rem;
+  font-size: clamp(1.6rem, 1.4311rem + 0.7111vw, 2rem);
+  cursor: pointer;
+  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: scale 300ms ease-in-out;
+}
+.btn:hover {
+  scale: 1.1;
+}
+
+.add-task {
+  position: fixed;
+  inset: 0;
+  background-color: var(--main-bg);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  translate: 0 -100%;
+  transition: translate 300ms ease-in-out;
+}
+.add-task > * {
+  width: 100%;
+}
+.add-task.show {
+  translate: 0;
+}
+
+.form__label {
+  display: block;
+  margin-block-end: 1rem;
+}
+.form__control {
+  padding: 0.75rem;
+  display: block;
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--input-border-color);
+  border-radius: 0.5rem;
+  transition: border-color 300ms ease-in-out;
+}
+.form__control:hover, .form__control:focus {
+  border-color: var(--primary-color);
+  cursor: pointer;
+}
+.form__submit {
+  margin-block-start: 2rem;
+  margin-inline: auto;
 }

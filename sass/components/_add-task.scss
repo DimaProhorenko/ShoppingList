@@ -1,0 +1,20 @@
+@use '../abstracts/' as abs;
+
+.add-task {
+    position: fixed;
+    inset: 0;
+    background-color: var(--main-bg);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    translate: 0 -100%;
+    transition: translate abs.$t-duration abs.$t-timing;
+
+    & > * {
+        width: 100%;
+    }
+
+    &.show {
+        translate: 0;
+    }
+}

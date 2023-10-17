@@ -17,4 +17,42 @@ const setDateElement = () => {
 	dayEl.textContent = date.day;
 };
 
+const createTask = (taskText) => {
+	const li = document.createElement('li');
+	li.className = 'task';
+
+	const span = document.createElement('span');
+	span.className = 'task__text';
+	span.textContent = taskText;
+
+	const deleteBtn = document.createElement('button');
+	deleteBtn.className = 'task__delete';
+
+	const deleteIcon = document.createElement('i');
+	deleteIcon.className = 'fa-solid fa-x';
+	deleteBtn.appendChild(deleteIcon);
+
+	li.appendChild(span);
+	li.appendChild(deleteBtn);
+	return li;
+};
+
 setDateElement();
+
+const addTaskBtn = document.getElementById('create-task');
+const addTaskEl = document.querySelector('.add-task');
+const createTaskForm = document.querySelector('.add-form');
+const createTaskInput = document.querySelector('#task-name');
+const taskList = document.querySelector('.tasks__list');
+
+addTaskBtn.addEventListener('click', () => {
+	addTaskEl.classList.add('show');
+});
+
+createTaskForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const task = createTask(createTaskInput.value);
+	console.log(task);
+	taskList.appendChild(task);
+	addTaskEl.classList.remove('show');
+});

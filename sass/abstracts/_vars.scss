@@ -9,8 +9,12 @@ $bp-tablet: 620px;
 $bp-desktop: 1024px;
 
 :root {
+    --primary-color: #0BB6FF;
     --primary-text-color: #333;
     --secondary-text-color: #777;
+    --text-white: #fff;
+    --main-bg: #fff;
 
     --task-border-color: #c2c2c2;
+    --input-border-color: #b7b7b7;
 }

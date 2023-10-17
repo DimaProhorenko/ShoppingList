@@ -1,0 +1,20 @@
+@use '../abstracts/' as abs;
+
+.btn {
+    outline: none;
+    border: none;
+    display: block;
+    padding-inline: 3rem;
+    padding-block: .75rem;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: clamp(1.6rem, 1.4311rem + 0.7111vw, 2rem);
+    cursor: pointer;
+    box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: scale abs.$t-duration abs.$t-timing;
+
+    &:hover {
+        scale: 1.1;
+    }
+}
