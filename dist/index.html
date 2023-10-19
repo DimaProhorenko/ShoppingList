@@ -75,12 +75,12 @@
 					<!-- Task counter end -->
 					<!-- Tasks list start -->
 					<ul class="tasks__list flow mb-4">
-						<!-- <li class="task">
-							<span class="task__text">Take out trash</span>
+						<li class="task">
+							<p class="task__text">check</p>
 							<button class="task__delete" title="Delete task">
 								<i class="fa-solid fa-x"></i>
 							</button>
-						</li> -->
+						</li>
 					</ul>
 					<!-- Tasks list end -->
 					<button class="btn block-center" id="create-task">
@@ -91,7 +91,7 @@
 
 			<section class="add-task">
 				<div class="container">
-					<form class="add-form">
+					<form class="form add-form">
 						<div class="form__group">
 							<label for="task-name" class="form__label"
 								>Enter your task</label
@@ -101,6 +101,10 @@
 								id="task-name"
 								class="form__control"
 							/>
+							<span
+								class="form__error"
+								id="create-task-error"
+							></span>
 						</div>
 						<button
 							type="submit"

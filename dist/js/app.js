@@ -1,3 +1,7 @@
+const addUniqueClass = (el, className) => {
+	el.classList.contains(className) ? '' : el.classList.add(className);
+};
+
 const getCurrentDate = () => {
 	const date = new Date();
 	const year = date.getFullYear();
@@ -37,6 +41,16 @@ const createTask = (taskText) => {
 	return li;
 };
 
+const isTaskUnique = (text) => {
+	const a = Array.from(taskList.children).map(
+		(task) => task.querySelector('.task__text').textContent
+	);
+	return !a.includes(text);
+	// return !!Array.from(taskList.children).find(
+	// 	(task) => task.querySelector('.task__text').textContent === text
+	// );
+};
+
 const hasTasks = () => {
 	return taskList.children.length > 0;
 };
@@ -49,31 +63,59 @@ const showFilterForm = () => {
 	filterForm.style.display = 'block';
 };
 
+const showFormError = (el, text) => {
+	el.textContent = text;
+};
+
+const resetCreateTaskInput = () => {
+	createTaskInput.value = '';
+};
+
 const updateFilterFormDisplay = () => {
 	hasTasks() ? showFilterForm() : hideFilterForm();
 };
 
-setDateElement();
+const onAddTask = (e) => {
+	e.preventDefault();
+	const taskText = createTaskInput.value;
+	console.log(taskText);
+	console.log(isTaskUnique(taskText));
+	if (isTaskUnique(taskText)) {
+		const task = createTask(taskText);
+		taskList.appendChild(task);
+		addTaskEl.classList.remove('show');
+		resetCreateTaskInput();
+		updateFilterFormDisplay();
+	} else {
+		addUniqueClass(createTaskForm, 'form--invalid');
+		showFormError(createTaskError, 'Task already exists!');
+		resetCreateTaskInput();
+	}
+};
 
+const onTaskClick = (e) => {
+	if (e.target.classList.contains('task__text')) {
+		e.target.parentElement.classList.toggle('task--done');
+	}
+};
+
+setDateElement();
 const addTaskBtn = document.getElementById('create-task');
 const addTaskEl = document.querySelector('.add-task');
 const createTaskForm = document.querySelector('.add-form');
 const createTaskInput = document.querySelector('#task-name');
 const taskList = document.querySelector('.tasks__list');
 const filterForm = document.getElementById('filter-tasks-form');
+const createTaskError = document.getElementById('create-task-error');
 
 addTaskBtn.addEventListener('click', () => {
 	addTaskEl.classList.add('show');
 });
 
-createTaskForm.addEventListener('submit', (e) => {
-	e.preventDefault();
-	const task = createTask(createTaskInput.value);
-	console.log(task);
-	taskList.appendChild(task);
-	addTaskEl.classList.remove('show');
-});
+createTaskForm.addEventListener('submit', onAddTask);
 
 window.addEventListener('DOMContentLoaded', () => {
 	updateFilterFormDisplay();
 });
+
+taskList.addEventListener('click', onTaskClick);
