@@ -37,6 +37,22 @@ const createTask = (taskText) => {
 	return li;
 };
 
+const hasTasks = () => {
+	return taskList.children.length > 0;
+};
+
+const hideFilterForm = () => {
+	filterForm.style.display = 'none';
+};
+
+const showFilterForm = () => {
+	filterForm.style.display = 'block';
+};
+
+const updateFilterFormDisplay = () => {
+	hasTasks() ? showFilterForm() : hideFilterForm();
+};
+
 setDateElement();
 
 const addTaskBtn = document.getElementById('create-task');
@@ -44,6 +60,7 @@ const addTaskEl = document.querySelector('.add-task');
 const createTaskForm = document.querySelector('.add-form');
 const createTaskInput = document.querySelector('#task-name');
 const taskList = document.querySelector('.tasks__list');
+const filterForm = document.getElementById('filter-tasks-form');
 
 addTaskBtn.addEventListener('click', () => {
 	addTaskEl.classList.add('show');
@@ -55,4 +72,8 @@ createTaskForm.addEventListener('submit', (e) => {
 	console.log(task);
 	taskList.appendChild(task);
 	addTaskEl.classList.remove('show');
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+	updateFilterFormDisplay();
 });

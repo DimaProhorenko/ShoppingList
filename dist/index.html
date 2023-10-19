@@ -45,6 +45,20 @@
 		<main class="app">
 			<section class="tasks">
 				<div class="container">
+					<!-- Filter tasks form -->
+					<form class="form mb-2" id="filter-tasks-form">
+						<div class="form__group">
+							<label for="filter-tasks" class="form__label"
+								>Filter items</label
+							>
+							<input
+								type="text"
+								name="filter-tasks"
+								id="filter-tasks"
+								class="form__control"
+							/>
+						</div>
+					</form>
 					<!-- Task counter start -->
 					<div class="counter mb-2">
 						<h3 class="counter__active">
@@ -61,12 +75,12 @@
 					<!-- Task counter end -->
 					<!-- Tasks list start -->
 					<ul class="tasks__list flow mb-4">
-						<li class="task">
+						<!-- <li class="task">
 							<span class="task__text">Take out trash</span>
 							<button class="task__delete" title="Delete task">
 								<i class="fa-solid fa-x"></i>
 							</button>
-						</li>
+						</li> -->
 					</ul>
 					<!-- Tasks list end -->
 					<button class="btn block-center" id="create-task">
