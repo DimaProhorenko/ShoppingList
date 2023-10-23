@@ -46,9 +46,6 @@ const isTaskUnique = (text) => {
 		(task) => task.querySelector('.task__text').textContent
 	);
 	return !a.includes(text);
-	// return !!Array.from(taskList.children).find(
-	// 	(task) => task.querySelector('.task__text').textContent === text
-	// );
 };
 
 const hasTasks = () => {
@@ -75,28 +72,73 @@ const updateFilterFormDisplay = () => {
 	hasTasks() ? showFilterForm() : hideFilterForm();
 };
 
+const isTaskTextEmpty = (text) => {
+	return text.length === 0;
+};
+
+const filterTasks = (filterText) => {
+	const filteredTasks = Array.from(taskList.children).filter((task) => {
+		task.querySelector('.task__text').textContent.length > 0;
+	});
+	return filteredTasks;
+};
+
+const updateCurrentTasksCounter = () => {
+	const currentTasks = Array.from(taskList.children).filter(
+		(task) => !task.classList.contains('task--done')
+	).length;
+	currentTaskCounter.textContent = currentTasks;
+};
+
+const updateCompletedTasksCounter = () => {
+	const currentTasks = Array.from(taskList.children).filter((task) =>
+		task.classList.contains('task--done')
+	).length;
+	completedTaskCounter.textContent = currentTasks;
+};
+
+const updateCounters = () => {
+	updateCompletedTasksCounter();
+	updateCurrentTasksCounter();
+};
+
+const onFilterTasks = (e) => {
+	const tasks = filterTasks(e.target.value);
+	console.log(tasks);
+};
+
 const onAddTask = (e) => {
 	e.preventDefault();
 	const taskText = createTaskInput.value;
-	console.log(taskText);
-	console.log(isTaskUnique(taskText));
-	if (isTaskUnique(taskText)) {
-		const task = createTask(taskText);
-		taskList.appendChild(task);
-		addTaskEl.classList.remove('show');
-		resetCreateTaskInput();
-		updateFilterFormDisplay();
+
+	if (isTaskTextEmpty(taskText)) {
+		showFormError(createTaskError, "Task can't be empty");
 	} else {
-		addUniqueClass(createTaskForm, 'form--invalid');
-		showFormError(createTaskError, 'Task already exists!');
-		resetCreateTaskInput();
+		if (isTaskUnique(taskText)) {
+			const task = createTask(taskText);
+			taskList.appendChild(task);
+			addTaskEl.classList.remove('show');
+			resetCreateTaskInput();
+			updateFilterFormDisplay();
+			updateCounters();
+		} else {
+			addUniqueClass(createTaskForm, 'form--invalid');
+			showFormError(createTaskError, 'Task already exists!');
+			resetCreateTaskInput();
+		}
 	}
 };
 
 const onTaskClick = (e) => {
+	console.log(e.target);
 	if (e.target.classList.contains('task__text')) {
 		e.target.parentElement.classList.toggle('task--done');
+	} else if (e.target.classList.contains('task__delete')) {
+		e.target.parentElement.remove();
+		updateFilterFormDisplay();
 	}
+
+	updateCounters();
 };
 
 setDateElement();
@@ -106,7 +148,10 @@ const createTaskForm = document.querySelector('.add-form');
 const createTaskInput = document.querySelector('#task-name');
 const taskList = document.querySelector('.tasks__list');
 const filterForm = document.getElementById('filter-tasks-form');
+const filterInput = document.getElementById('filter-tasks');
 const createTaskError = document.getElementById('create-task-error');
+const currentTaskCounter = document.getElementById('active-tasks-counter');
+const completedTaskCounter = document.getElementById('completed-tasks-counter');
 
 addTaskBtn.addEventListener('click', () => {
 	addTaskEl.classList.add('show');
@@ -116,6 +161,9 @@ createTaskForm.addEventListener('submit', onAddTask);
 
 window.addEventListener('DOMContentLoaded', () => {
 	updateFilterFormDisplay();
+	updateCounters();
 });
+
+filterInput.addEventListener('input', onFilterTasks);
 
 taskList.addEventListener('click', onTaskClick);
