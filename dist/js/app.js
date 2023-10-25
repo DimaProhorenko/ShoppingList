@@ -76,12 +76,7 @@ const isTaskTextEmpty = (text) => {
 	return text.length === 0;
 };
 
-const filterTasks = (filterText) => {
-	const filteredTasks = Array.from(taskList.children).filter((task) => {
-		task.querySelector('.task__text').textContent.length > 0;
-	});
-	return filteredTasks;
-};
+const filterTasks = (filterText) => {};
 
 const updateCurrentTasksCounter = () => {
 	const currentTasks = Array.from(taskList.children).filter(
@@ -103,8 +98,18 @@ const updateCounters = () => {
 };
 
 const onFilterTasks = (e) => {
-	const tasks = filterTasks(e.target.value);
-	console.log(tasks);
+	const tasks = Array.from(taskList.children).forEach((task) => {
+		if (
+			task
+				.querySelector('.task__text')
+				.textContent.toLowerCase()
+				.includes(e.target.value.toLowerCase())
+		) {
+			task.style.display = 'flex';
+		} else {
+			task.style.display = 'none';
+		}
+	});
 };
 
 const onAddTask = (e) => {
@@ -158,6 +163,10 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 createTaskForm.addEventListener('submit', onAddTask);
+
+filterForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+});
 
 window.addEventListener('DOMContentLoaded', () => {
 	updateFilterFormDisplay();
