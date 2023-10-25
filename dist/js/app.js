@@ -21,6 +21,23 @@ const setDateElement = () => {
 	dayEl.textContent = date.day;
 };
 
+const addTaskToLocalStorage = (task) => {
+	const tasks = localStorage.getItem('tasks');
+	if (tasks) {
+		const tasksFromStorage = JSON.parse(tasks);
+		tasksFromStorage.push(task);
+		console.log(tasksFromStorage, task);
+		localStorage.setItem('tasks', JSON.stringify(tasksFromStorage));
+	} else {
+		localStorage.setItem('tasks', JSON.stringify([task]));
+	}
+};
+
+const readTasksFromLocalStorage = () => {
+	const tasks = localStorage.getItem('tasks');
+	return JSON.parse(tasks) || [];
+};
+
 const createTask = (taskText) => {
 	const li = document.createElement('li');
 	li.className = 'task';
@@ -76,8 +93,6 @@ const isTaskTextEmpty = (text) => {
 	return text.length === 0;
 };
 
-const filterTasks = (filterText) => {};
-
 const updateCurrentTasksCounter = () => {
 	const currentTasks = Array.from(taskList.children).filter(
 		(task) => !task.classList.contains('task--done')
@@ -121,6 +136,7 @@ const onAddTask = (e) => {
 	} else {
 		if (isTaskUnique(taskText)) {
 			const task = createTask(taskText);
+			addTaskToLocalStorage(taskText);
 			taskList.appendChild(task);
 			addTaskEl.classList.remove('show');
 			resetCreateTaskInput();
@@ -169,6 +185,9 @@ filterForm.addEventListener('submit', (e) => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+	const tasks = readTasksFromLocalStorage();
+	console.log(tasks);
+	tasks.forEach((task) => taskList.appendChild(createTask(task)));
 	updateFilterFormDisplay();
 	updateCounters();
 });
